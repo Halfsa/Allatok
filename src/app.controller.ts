@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Redirect, Render } from '@nestjs/common';
+import { Body, Controller, Get, NotAcceptableException, Post, Redirect, Render } from '@nestjs/common';
 import * as mysql from 'mysql2';
 import { AppService } from './app.service';
 import { UjAllatDTO } from './UjAllatDto';
@@ -29,6 +29,9 @@ export class AppController {
   @Post('/allatForm')
   async form(@Body() allat: UjAllatDTO) {
     const nev = allat.nev;
+    if (allat.kor <0) {
+      throw new NotAcceptableException;
+    }
     const kor = allat.kor;
     const faj = allat.faj;
    const [ adatok ] = await conn.execute(
