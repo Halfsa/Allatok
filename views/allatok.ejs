@@ -9,7 +9,10 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <a href="/allatform"> Új állat hozzáadása</a> <br>
-    <a href="/allatok"> Állatok megtekintése</a>
+    <ul>
+        <% allat.forEach(kisallat => { %>
+          <li><%= kisallat.nev %>&nbsp;(<%= kisallat.fajta %>)</a></li>  
+        <% }); %>
+    </ul>
 </body>
 </html>
